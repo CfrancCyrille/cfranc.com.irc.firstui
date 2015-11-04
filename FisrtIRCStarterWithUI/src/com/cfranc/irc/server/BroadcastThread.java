@@ -5,7 +5,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 
-public class BroadcastThread extends Thread {
+import static com.cfranc.irc.IfClientServerProtocol.*;
+
+public class BroadcastThread{
 	
 	public static HashMap<User, ServerToClientThread> clientTreadsMap=new HashMap<User, ServerToClientThread>();
 	static{
@@ -18,6 +20,7 @@ public class BroadcastThread extends Thread {
 			res=false;
 		}
 		else{
+			serverToClientThread.start();
 			clientTreadsMap.put(user, serverToClientThread);
 		}
 		return res;

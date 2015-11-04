@@ -1,6 +1,7 @@
 package com.cfranc.irc.server;
 
 import java.io.DataInputStream;
+
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -10,9 +11,9 @@ import javax.swing.DefaultListModel;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
 
-import com.cfranc.irc.IfClientServerProtocol;
+import static com.cfranc.irc.IfClientServerProtocol.*;
 
-public class ClientConnectThread extends Thread implements IfClientServerProtocol {
+public class ClientConnectThread extends Thread {
 	StyledDocument model=null;
 	DefaultListModel<String> clientListModel;		
 	
@@ -86,7 +87,6 @@ public class ClientConnectThread extends Thread implements IfClientServerProtoco
 
 			// Add user
 			if(BroadcastThread.addClient(newUser, client)){
-				client.start();			
 				clientListModel.addElement(newUser.getLogin());
 				dos.writeUTF(ADD+login);
 			}
