@@ -86,7 +86,7 @@ public class ClientConnectThread extends Thread {
 			dos.writeUTF(OK);
 
 			// Add user
-			if(BroadcastThread.addClient(newUser, client)){
+			if(BroadcastManager.addClient(newUser, client)){
 				clientListModel.addElement(newUser.getLogin());
 				dos.writeUTF(ADD+login);
 			}
@@ -100,7 +100,7 @@ public class ClientConnectThread extends Thread {
 	}
 	
 	private boolean authentication(User newUser){
-		return BroadcastThread.accept(newUser);
+		return BroadcastManager.accept(newUser);
 	}
 
 	
